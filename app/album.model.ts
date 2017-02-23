@@ -1,3 +1,3 @@
-export class Keg {
-  constructor(public name: string, public brand: string, public pintCount: number, public price: number, public alcoholContent: number) { }
+export class Album {
+  constructor(public name: string, public artist: string, public price: number, public genre: string) { }
 }

@@ -1,41 +1,40 @@
 import { Component } from '@angular/core';
-import { Keg } from './keg.model';
+import { Album } from './album.model';
 
 @Component({
   selector: 'my-app',
   template: `
     <div class='container'>
-    <keg-list
-      [kegList]="masterKegList"
-      (selectSubmit)="editDetails($event)"
-      class='col-xs-12'
-      ></keg-list>
-    <edit-keg
-      [editingKeg]="selectedKeg"
-      (editSubmit) = "doneEditing()"
-      class='col-xs-12'
-    ></edit-keg>
-    <new-keg
-      (newSubmit)='addingKeg($event)'
-      class='col-xs-12'
-    ></new-keg>
+    <album-list
+      [displayList] = 'masterAlbumList'
+      [genreList] = 'genreSort()'
+      [artistList] = 'artistSort()'
+    ></album-list>
     </div>
   `
 })
 
 export class AppComponent{
-  public masterKegList: Keg[] = [
-    new Keg('Asahi','Suntory', 40, 11, 5),
-    new Keg('Corona', 'Cerveceria', 40, 10, 6),
+  public masterAlbumList: Album[] = [
+    new Album('8th','NGT46', 100, 'Jpop'),
+    new Album('U-87', 'Eason Chan', 150, 'Cantonpop'),
+    new Album('Silent Majority', 'KYZ46', 90, 'Jpop'),
     ];
-  selectedKeg: Keg = null;
-  editDetails(clickedKeg: Keg){
-    this.selectedKeg = clickedKeg;
+
+
+  genreSort(){
+    var genreList : string[] =[];
+    for (var i = 0; i < this.masterAlbumList.length; i++){
+    genreList.push(this.masterAlbumList[i].genre);
+    }
+    return genreList;
   }
-  doneEditing(){
-    this.selectedKeg = null;
-  }
-  addingKeg(newKeg: Keg){
-    this.masterKegList.push(newKeg);
+
+  artistSort(){
+    var artistList : string[] =[];
+    for (var i = 0; i < this.masterAlbumList.length; i++){
+    artistList.push(this.masterAlbumList[i].artist);
+    }
+    return artistList;
   }
 }
