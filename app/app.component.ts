@@ -16,9 +16,9 @@ import { Album } from './album.model';
 
 export class AppComponent{
   public masterAlbumList: Album[] = [
-    new Album('8th','NGT46', 100, 'Jpop'),
-    new Album('U-87', 'Eason Chan', 150, 'Cantonpop'),
-    new Album('Silent Majority', 'KYZ46', 90, 'Jpop'),
+    new Album('8th','NGT46', 100, 'Jpop', 0),
+    new Album('U-87', 'Eason Chan', 150, 'Cantonpop', 0),
+    new Album('Silent Majority', 'KYZ46', 90, 'Jpop', 0),
     ];
 
 

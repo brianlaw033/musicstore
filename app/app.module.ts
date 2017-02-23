@@ -5,7 +5,7 @@ import { AppComponent }   from './app.component';
 import { AlbumListComponent } from './album-list.component';
 import { MenuPipe } from './menu-pipe.component';
 import { AlbumPipe } from './album-pipe.component';
-
+import { AlbumComponent } from './album.component';
 
 @NgModule({
   imports: [
@@ -17,6 +17,7 @@ import { AlbumPipe } from './album-pipe.component';
     AlbumListComponent,
     MenuPipe,
     AlbumPipe,
+    AlbumComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

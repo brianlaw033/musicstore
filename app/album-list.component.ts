@@ -12,11 +12,17 @@ import { Album } from './album.model';
       <option *ngFor='let artMenux of artistList | menuFilter'value={{artMenux}}>{{artMenux}}</option>
   </select>
     <div *ngFor='let albumx of displayList | albumFilter:mode:type'>
-      <h3>{{albumx.name}}</h3>
-      <p>{{albumx.artist}}</p>
-      <p>{{albumx.price}}</p>
-      <p>{{albumx.genre}}</p>
+      <album-display
+        [album]="albumx"
+        (addToBasket)="cart($event)"
+        (ordersss)='cartDetails($event)'
+      ></album-display>
     </div>
+    <div *ngFor='let orderx of orderList'>
+      <p>{{orderx[0]}} {{orderx[1]}}</p>
+    </div>
+    <div>Total= {{total}}</div>
+    <button (click)="clear()">Clear Your Cart</button>
   `
 })
 
@@ -26,6 +32,9 @@ export class AlbumListComponent{
   @Input() artistList : Album[];
   public mode: string= "";
   public type: string= "";
+  public total: number= 0;
+  public orderList: any[] =[];
+
   sortByGenre(genreChosen){
     this.mode = genreChosen;
     this.type = 'genre';
@@ -34,5 +43,16 @@ export class AlbumListComponent{
     this.mode = artistChosen;
     this.type = 'artist';
   }
+  cartDetails(orderItem){
+    this.orderList.push(orderItem);
+  }
 
+  cart(albumToBuy){
+      this.total = this.total + albumToBuy;
+    }
+
+  clear(){
+    this.total=0;
+    this.orderList=[];
+  }
 }
